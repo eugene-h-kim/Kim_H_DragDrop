@@ -5,6 +5,8 @@
 				dropZones = document.querySelectorAll('.drop-zone'),
 				gameBoard = document.querySelector('.puzzle-board');
 
+	const piecePaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
+
 	// theThumbnails collects alll of the image elements into an array-like container
 	// [
 	// 	<img src="images/buttonZero.jpg" alt="thumbnail">
@@ -13,7 +15,8 @@
 	// 	<img src="images/buttonThree.jpg" alt="thumbnail">
 	// ]
 
-	function changeBgImg () {
+	function changeImageSet () {
+
 		// debugger; // pause our code execusion at this point
 		// let key = this.dataset.bgref;
 		// console.log(key);
@@ -24,9 +27,13 @@
 		// `` => this is a javascript template string. You can use it to write a bit of 
 		// inline backgroundImage which will be interpreted at runtime 
 		// search for MDN JavaScript Template String
+
+		piecePaths.forEach((piece, index) => {
+			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
+		})
 	}
 
-	// the "this" keyword refers to the elements
+	// the "this" keyword refers to the elements that triggers this function (the nav button)
 
 	function startDrag (event) {
 		// save a reference to the element we're dragging
@@ -57,7 +64,7 @@
 	}
 
 	// add event handling here -> loop through theThumbnails array and add event handling to each image
-	theThumbnails.forEach(item => item.addEventListener('click', changeBgImg));
+	theThumbnails.forEach(item => item.addEventListener('click', changeImageSet));
 	puzzlePieces.forEach(piece => piece.addEventListener('dragstart', startDrag));
 
 	dropZones.forEach(zone => {
