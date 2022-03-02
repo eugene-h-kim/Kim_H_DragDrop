@@ -65,8 +65,11 @@
 
 	// add event handling here -> loop through theThumbnails array and add event handling to each image
 	theThumbnails.forEach(item => item.addEventListener('click', changeImageSet));
+
+	// listen for the dragstarted event on the puzzle puzzlePieces
 	puzzlePieces.forEach(piece => piece.addEventListener('dragstart', startDrag));
 
+	// add event handling for the drop zones (dragover and drop)
 	dropZones.forEach(zone => {
 		zone.addEventListener('dragover', draggedOver);
 		zone.addEventListener('drop', handleDrop);
