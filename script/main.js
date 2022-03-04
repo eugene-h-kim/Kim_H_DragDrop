@@ -7,6 +7,8 @@
 
 	const piecePaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 
+	const gameBoardChildren = gameBoard.children;
+
 	// theThumbnails collects alll of the image elements into an array-like container
 	// [
 	// 	<img src="images/buttonZero.jpg" alt="thumbnail">
@@ -29,9 +31,15 @@
 		// search for MDN JavaScript Template String
 
 		piecePaths.forEach((piece, index) => {
+
 			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
+
+			let puzzlePieceAll = document.querySelector(".puzzle-pieces");
+			puzzlePieceAll.appendChild(puzzlePieces[index]);
+
 		})
 	}
+
 
 	// the "this" keyword refers to the elements that triggers this function (the nav button)
 
@@ -52,17 +60,26 @@
 
 	function handleDrop (event) {
 		event.preventDefault();
-		console.log('dropped on me');
+		// console.log('dropped on me');
+
 		let currentEl = event.dataTransfer.getData('draggedElement');
-		console.log(`dropped this element:`, currentEl);
+		// console.log(`dropped this element:`, currentEl);
 
 		// appendChild (add child) is a built-in JavaScript method that 
 		// adds an element to a containing (parent) element
+
+		if (this.children.length > 0) {
+			return;
+		}
 
 		// the "this" keyword is a reference to the element you're dropping onto (or into)
 		this.appendChild(document.querySelector(`#${currentEl}`));
 	}
 
+
+
+
+	
 	// add event handling here -> loop through theThumbnails array and add event handling to each image
 	theThumbnails.forEach(item => item.addEventListener('click', changeImageSet));
 
