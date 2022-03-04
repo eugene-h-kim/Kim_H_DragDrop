@@ -7,7 +7,7 @@
 
 	const piecePaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 
-	const gameBoardChildren = gameBoard.children;
+	const gameBoardChildren = gameBoard.children; // added a new variable for gameBoard's Children here!
 
 	// theThumbnails collects alll of the image elements into an array-like container
 	// [
@@ -35,7 +35,7 @@
 			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
 
 			let puzzlePieceAll = document.querySelector(".puzzle-pieces");
-			puzzlePieceAll.appendChild(puzzlePieces[index]);
+			puzzlePieceAll.appendChild(puzzlePieces[index]); // added a new variable here!
 
 		})
 	}
@@ -58,9 +58,10 @@
 		event.preventDefault();
 	}
 
+
 	function handleDrop (event) {
 		event.preventDefault();
-		// console.log('dropped on me');
+		// console.log(gameBoardChildren);
 
 		let currentEl = event.dataTransfer.getData('draggedElement');
 		// console.log(`dropped this element:`, currentEl);
@@ -70,7 +71,7 @@
 
 		if (this.children.length > 0) {
 			return;
-		}
+		}  // added return here!
 
 		// the "this" keyword is a reference to the element you're dropping onto (or into)
 		this.appendChild(document.querySelector(`#${currentEl}`));
@@ -79,7 +80,7 @@
 
 
 
-	
+
 	// add event handling here -> loop through theThumbnails array and add event handling to each image
 	theThumbnails.forEach(item => item.addEventListener('click', changeImageSet));
 
