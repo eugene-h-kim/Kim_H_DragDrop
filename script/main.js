@@ -5,6 +5,10 @@
 				dropZones = document.querySelectorAll('.drop-zone'),
 				gameBoard = document.querySelector('.puzzle-board');
 
+	const piecePaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
+
+	const gameBoardChildren = gameBoard.children; // added a new variable for gameBoard's Children here!
+
 	// theThumbnails collects alll of the image elements into an array-like container
 	// [
 	// 	<img src="images/buttonZero.jpg" alt="thumbnail">
@@ -13,7 +17,8 @@
 	// 	<img src="images/buttonThree.jpg" alt="thumbnail">
 	// ]
 
-	function changeBgImg () {
+	function changeImageSet () {
+
 		// debugger; // pause our code execusion at this point
 		// let key = this.dataset.bgref;
 		// console.log(key);
@@ -24,9 +29,19 @@
 		// `` => this is a javascript template string. You can use it to write a bit of 
 		// inline backgroundImage which will be interpreted at runtime 
 		// search for MDN JavaScript Template String
+
+		piecePaths.forEach((piece, index) => {
+
+			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
+
+			let puzzlePieceAll = document.querySelector(".puzzle-pieces");
+			puzzlePieceAll.appendChild(puzzlePieces[index]); // added a new variable here!
+
+		})
 	}
 
-	// the "this" keyword refers to the elements
+
+	// the "this" keyword refers to the elements that triggers this function (the nav button)
 
 	function startDrag (event) {
 		// save a reference to the element we're dragging
@@ -43,25 +58,43 @@
 		event.preventDefault();
 	}
 
+
 	function handleDrop (event) {
 		event.preventDefault();
-		console.log('dropped on me');
+		// console.log(gameBoardChildren);
+
 		let currentEl = event.dataTransfer.getData('draggedElement');
-		console.log(`dropped this element:`, currentEl);
+		// console.log(`dropped this element:`, currentEl);
 
 		// appendChild (add child) is a built-in JavaScript method that 
 		// adds an element to a containing (parent) element
+
+		if (this.children.length > 0) {
+			return;
+		}  // added return here!
 
 		// the "this" keyword is a reference to the element you're dropping onto (or into)
 		this.appendChild(document.querySelector(`#${currentEl}`));
 	}
 
+
+
+
+
 	// add event handling here -> loop through theThumbnails array and add event handling to each image
-	theThumbnails.forEach(item => item.addEventListener('click', changeBgImg));
+	theThumbnails.forEach(item => item.addEventListener('click', changeImageSet));
+
+	// listen for the dragstarted event on the puzzle puzzlePieces
 	puzzlePieces.forEach(piece => piece.addEventListener('dragstart', startDrag));
 
+	// add event handling for the drop zones (dragover and drop)
 	dropZones.forEach(zone => {
 		zone.addEventListener('dragover', draggedOver);
 		zone.addEventListener('drop', handleDrop);
 	});
+
+
+	// research in MDN for apply, call, bind
+	changeImageSet.apply(theThumbnails[0]);  // added reset here!
+
 })();
