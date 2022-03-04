@@ -92,4 +92,9 @@
 		zone.addEventListener('dragover', draggedOver);
 		zone.addEventListener('drop', handleDrop);
 	});
+
+
+	// research in MDN for apply, call, bind
+	changeImageSet.apply(theThumbnails[0]);  // added reset here!
+
 })();
