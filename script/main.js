@@ -35,7 +35,7 @@
 			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
 
 			let puzzlePieceAll = document.querySelector(".puzzle-pieces");
-			puzzlePieceAll.appendChild(puzzlePieces[index]); // added a new variable here!
+			puzzlePieceAll.appendChild(puzzlePieces[index]); // added a new variable here for the second problem!
 
 		})
 	}
@@ -71,7 +71,7 @@
 
 		if (this.children.length > 0) {
 			return;
-		}  // added return here!
+		}  // added return here for the first bug!
 
 		// the "this" keyword is a reference to the element you're dropping onto (or into)
 		this.appendChild(document.querySelector(`#${currentEl}`));
