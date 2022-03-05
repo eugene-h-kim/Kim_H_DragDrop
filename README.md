@@ -38,10 +38,5 @@ Clone the repository or download the zip file and launch the index.html.
 * Kim, Hyeongtae: [eugene-h-kim](https://github.com/eugene-h-kim)
 
 
-## Additional Notes
-
-The problem analysing plan formatted as a PDF document is inside of the includes folder written in Google Docs.
-
-
 ## License 
 MIT
