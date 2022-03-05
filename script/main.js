@@ -59,9 +59,17 @@
 		// appendChild (add child) is a built-in JavaScript method that 
 		// adds an element to a containing (parent) element
 
+		if (this.children.length > 0) {
+			return;
+		}  // added return here for the first problem!
+
+
 		// the "this" keyword is a reference to the element you're dropping onto (or into)
 		this.appendChild(document.querySelector(`#${currentEl}`));
 	}
+
+		
+
 
 	// add event handling here -> loop through theThumbnails array and add event handling to each image
 	theThumbnails.forEach(item => item.addEventListener('click', changeImageSet));
