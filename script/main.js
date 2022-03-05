@@ -7,8 +7,6 @@
 
 	const piecePaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 
-	const gameBoardChildren = gameBoard.children; // added a new variable for gameBoard's Children here!
-
 	// theThumbnails collects alll of the image elements into an array-like container
 	// [
 	// 	<img src="images/buttonZero.jpg" alt="thumbnail">
@@ -33,9 +31,6 @@
 		piecePaths.forEach((piece, index) => {
 
 			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
-
-			let puzzlePieceAll = document.querySelector(".puzzle-pieces");
-			puzzlePieceAll.appendChild(puzzlePieces[index]); // added a new variable here for the second problem!
 
 		})
 	}
@@ -69,15 +64,9 @@
 		// appendChild (add child) is a built-in JavaScript method that 
 		// adds an element to a containing (parent) element
 
-		if (this.children.length > 0) {
-			return;
-		}  // added return here for the first bug!
-
 		// the "this" keyword is a reference to the element you're dropping onto (or into)
 		this.appendChild(document.querySelector(`#${currentEl}`));
 	}
-
-
 
 
 
@@ -92,9 +81,4 @@
 		zone.addEventListener('dragover', draggedOver);
 		zone.addEventListener('drop', handleDrop);
 	});
-
-
-	// research in MDN for apply, call, bind
-	changeImageSet.apply(theThumbnails[0]);  // added reset here!
-
 })();
