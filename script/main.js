@@ -5,6 +5,9 @@
 				dropZones = document.querySelectorAll('.drop-zone'),
 				gameBoard = document.querySelector('.puzzle-board');
 
+				puzzlePiecesChild = document.querySelector(".puzzle-pieces") // added a new variable to append a child for the second problem!
+
+
 	const piecePaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 
 	// theThumbnails collects alll of the image elements into an array-like container
@@ -31,6 +34,8 @@
 		piecePaths.forEach((piece, index) => {
 
 			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
+
+			puzzlePiecesChild.appendChild(puzzlePieces[index]);  // added a new child method for the second problem!
 
 		})
 	}
