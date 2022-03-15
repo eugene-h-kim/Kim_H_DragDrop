@@ -1,11 +1,15 @@
 (() => {
 	// collect the buttons at the bottom of the page
 	let theThumbnails = document.querySelectorAll('#buttonHolder img'),
-				puzzlePieces = document.querySelectorAll('.puzzle-pieces *'),
-				dropZones = document.querySelectorAll('.drop-zone'),
-				gameBoard = document.querySelector('.puzzle-board');
+		puzzlePieces = document.querySelectorAll('.puzzle-pieces *'),
+		dropZones = document.querySelectorAll('.drop-zone'),
+		gameBoard = document.querySelector('.puzzle-board');
 
-				puzzlePiecesChild = document.querySelector(".puzzle-pieces") // added a new variable to append a child for the second problem!
+		// Week8 - class demo
+		// dragBoard = document.querySelector('.puzzle-pieces')
+
+		puzzlePiecesChild = document.querySelector('.puzzle-pieces') // added a new variable to append a child for the second problem!
+	
 
 
 	const piecePaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
@@ -19,6 +23,21 @@
 	// ]
 
 	function changeImageSet () {
+
+		/*
+
+		dropZones.forEach(zone => {
+
+			// put puzzle pieces back where they came from
+			// Week8 class demo
+
+			if (zone.childElementCount > 0) {
+				dragBoard.appendChild(zone.firstElementChild);
+			} 
+
+		})
+
+		*/
 
 		// debugger; // pause our code execusion at this point
 		// let key = this.dataset.bgref;
@@ -35,7 +54,8 @@
 
 			puzzlePieces[index].src = `images/${piece + this.dataset.bgref}.jpg`;
 
-			puzzlePiecesChild.appendChild(puzzlePieces[index]);  // added a new child method for the second problem!
+			// added a new child method for the second problem!
+			puzzlePiecesChild.appendChild(puzzlePieces[index]);  
 
 		})
 	}
@@ -60,14 +80,26 @@
 
 
 	function handleDrop (event) {
+		// turn off the default browser behaviour -> follow our instructions instead of what
 		event.preventDefault();
 		// console.log(gameBoardChildren);
 
+		// check for children - week8 class note
+		
+		/* 
+		if (this.childElementCount > 0) {
+			return;
+		} 
+		*/
+
+		// retrieve the dragged element using the dataTransfer object
+		// This was set in the drag event using the setData method
 		let currentEl = event.dataTransfer.getData('draggedElement');
 		// console.log(`dropped this element:`, currentEl);
 
 		// appendChild (add child) is a built-in JavaScript method that 
 		// adds an element to a containing (parent) element
+
 
 		if (this.children.length > 0) {
 			return;
